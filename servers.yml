@@ -1,0 +1,8 @@
+- hosts: servers
+  sudo: True
+  vars_files:
+    - group_vars/pass
+  vars:
+    sudoer: baz
+  roles:
+   - role: sudoer

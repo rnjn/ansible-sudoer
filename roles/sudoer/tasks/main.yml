@@ -1,0 +1,5 @@
+- name: Create user
+  user: name={{ sudoer}} generate_ssh_key=yes ssh_key_bits=2048 state=present password={{ sudoer_password }}
+
+- name: configure sudoers
+  lineinfile: "dest=/etc/sudoers state=present backup=yes regexp='^%{{ sudoer }}' insertafter='^# %wheel' line='{{ sudoer }} ALL=(ALL) NOPASSWD: ALL' validate='visudo -cf %s'"
